@@ -1,16 +1,18 @@
 package neuropingpong;
 
 import static neuropingpong.Helpers.checkArgument;
+import static neuropingpong.Helpers.randomDouble;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents an artificial neuron.
  */
 class Neuron {
   private final List<Double> weights;
-  private final double bias;
+  private double bias;
   private double output = 0;
 
   Neuron(double bias, List<Double> weights) {
@@ -37,5 +39,25 @@ class Neuron {
 
   List<Double> getWeights() {
     return new ArrayList<>(weights);
+  }
+
+  /**
+   * Mutates the neuron by modifying the bias or one of the weights.
+   *
+   * @param random    a random number generator.
+   * @param magnitude specifies the maximum change of a weight or the bias.
+   */
+  void mutate(Random random, double magnitude) {
+    double delta = randomDouble(random, -magnitude, magnitude);
+    if (random.nextBoolean()) {
+      bias += delta;
+    } else {
+      var w = random.nextInt(weights.size());
+      weights.set(w, weights.get(w) + delta);
+    }
+  }
+
+  Neuron copy() {
+    return new Neuron(bias, weights);
   }
 }
