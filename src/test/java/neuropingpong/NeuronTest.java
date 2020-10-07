@@ -11,7 +11,7 @@ class NeuronTest {
   @Test
   void getBias() {
     var neuron = new Neuron(23.4, Collections.emptyList());
-    assertEquals(23.4, neuron.getBias(), 0.0001);
+    assertEquals(24.4, neuron.getBias(), 0.0001);
   }
 
   @Test
