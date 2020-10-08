@@ -135,8 +135,8 @@ class NeuronTest {
 
   @Test
   void neuronToString() {
-    Neuron neuron = new Neuron(3.2, asList(1.2, 3.4, 5.6));
-    assertEquals("Neuron{bias: 3.2, weights: [1.2, 3.4, 5.6]}",
+    Neuron neuron = new Neuron(3.2, asList(1.0, 3.40, 5.626));
+    assertEquals("Neuron{bias: 3.20, weights: [1.00, 3.40, 5.63]}",
         neuron.toString());
   }
 

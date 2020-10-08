@@ -78,8 +78,8 @@ class Neuron {
 
   @Override
   public String toString() {
-    return String.format("Neuron{bias: %f, weights: [%s]}", bias,
-        weights.stream().map(String::valueOf)
+    return String.format("Neuron{bias: %.2f, weights: [%s]}", bias,
+        weights.stream().map(w -> String.format("%.2f", w))
             .collect(Collectors.joining(", ")));
   }
 }
