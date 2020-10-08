@@ -6,6 +6,7 @@ import static neuropingpong.Helpers.randomDouble;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Represents an artificial neuron.
@@ -59,5 +60,26 @@ class Neuron {
 
   Neuron copy() {
     return new Neuron(bias, weights);
+  }
+
+  @Override
+  public boolean equals(Object that) {
+    if (that == this) {
+      return true;
+    }
+
+    if (that instanceof Neuron) {
+      Neuron neuron = (Neuron) that;
+      return neuron.bias == bias && neuron.weights.equals(weights);
+    }
+
+    return false;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("Neuron{bias: %.2f, weights: [%s]}", bias,
+        weights.stream().map(w -> String.format("%.2f", w))
+            .collect(Collectors.joining(", ")));
   }
 }
