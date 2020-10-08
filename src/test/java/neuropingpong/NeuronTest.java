@@ -3,6 +3,7 @@ package neuropingpong;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
@@ -122,6 +123,21 @@ class NeuronTest {
     assertEquals(4.4, neuron.getBias(), 0.0001);
     assertArrayEquals(new double[]{1.1, 2.2, 3.3}, toArray(neuron.getWeights()),
         0.0001);
+  }
+
+  @Test
+  void neuronEquals() {
+    Neuron neuron = new Neuron(3.2, asList(1.2, 3.4, 5.6));
+    assertEquals(neuron, new Neuron(3.2, asList(1.2, 3.4, 5.6)));
+    assertNotEquals(neuron, new Neuron(3.1, asList(1.2, 3.4, 5.6)));
+    assertNotEquals(neuron, new Neuron(3.2, asList(1.2, 3.3, 5.6)));
+  }
+
+  @Test
+  void neuronToString() {
+    Neuron neuron = new Neuron(3.2, asList(1.2, 3.4, 5.6));
+    assertEquals("Neuron{bias: 3.2, weights: [1.2, 3.4, 5.6]}",
+        neuron.toString());
   }
 
   private static double[] toArray(List<Double> list) {
