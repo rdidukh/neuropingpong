@@ -35,4 +35,18 @@ class Layer implements Cloneable {
     var n = random.nextInt(neurons.size());
     neurons.get(n).mutate(random, magnitude);
   }
+
+  @Override
+  public boolean equals(Object that) {
+    if (this == that) {
+      return true;
+    }
+
+    if (that instanceof Layer) {
+      Layer layer = (Layer) that;
+      return neurons.equals(layer.neurons);
+    }
+
+    return false;
+  }
 }
